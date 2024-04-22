@@ -1,19 +1,21 @@
-name: 🚀 Run
+name: Python Application Test
 
-on:
-  workflow_dispatch:
+on: [push, pull_request]
 
 jobs:
-  run:
-    name: 🚀 Run
+  build:
     runs-on: ubuntu-latest
-    steps:
-      - name: 📥 Checkout
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
 
-      - name: 🚀 Run
-        shell: bash
-        run: |
-          python3 main.py
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install unittest
+    - name: Run unittest
+      run: |
+        python -m unittest discover -s tests

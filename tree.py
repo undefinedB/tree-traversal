@@ -1,6 +1,5 @@
 from node import Node
 
-
 class Tree:
     """ Tree class for binary tree """
 
@@ -78,11 +77,30 @@ class Tree:
             self._printInorderTree(node.right)
 
     def _printPreorderTree(self, node):
-        # TODO 2
-        pass
+        """Print the nodes of the binary tree in preorder (Root, Left, Right).
+
+        Args:
+            node (Node): The starting node of the subtree to print.
+
+        Returns:
+            None
+        """
+        if node is not None:
+            print(node.data, end=' ')
+            self._printPreorderTree(node.left)
+            self._printPreorderTree(node.right)
 
     def _printPostorderTree(self, node):
-        # TODO 2
-        pass
+        """Print the nodes of the binary tree in postorder (Left, Right, Root).
 
+        Args:
+            node (Node): The starting node of the subtree to print.
+
+        Returns:
+            None
+        """
+        if node is not None:
+            self._printPostorderTree(node.left)
+            self._printPostorderTree(node.right)
+            print(node.data, end=' ')
 
